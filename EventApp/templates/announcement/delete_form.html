@@ -1,0 +1,12 @@
+<!-- travel/delete_confirm.html -->
+{% extends "base.html" %}
+{% block body %}
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete <b> "{{ post.title }}"</b>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger mr-1">Yes, delete</button>
+        <a href="{% url 'home:index' %}">Cancel</a>
+    </form>
+    {% endblock body %}
+

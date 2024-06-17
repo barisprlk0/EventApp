@@ -1,0 +1,76 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-custom ">
+    
+  <a href="{% url 'home:index' %}">  <img class="navbar-brand img-fluid"  src="{% static 'img/eventApp.png' %}" > </a> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text-black"><i class="bi bi-menu-app"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link mx-2" href="{% url "home:index" %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mx-2" href="{% url "travel:index" %}">Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mx-2" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mx-2" href="{% url "contact:index" %}">Contact</a>
+            </li>
+        </ul>
+  {% if user.is_authenticated == False %} 
+        
+        <a style="text-decoration:none; color:blue" href="{% url "account:login" %}"> <button class="btn btn-outline-primary my-2 my-sm-0 " type="submit">   Login </button></a>
+        <a style="text-decoration:none; color:blue" href="{% url "account:signup" %}"> <button class="btn btn-outline-primary my-2 my-sm-0 ml-2" type="submit">  Sign Up </button></a>
+  
+  {% else %}
+  <a style="text-decoration:none; color:blue" href="{% url "account:profile" %}"> <button class="btn btn-outline-primary my-2 my-sm-0 " type="submit">   Profile </button></a>
+  <a style="text-decoration:none; color:blue" href="{% url "account:logout" %}"> <button class="btn btn-outline-primary my-2 my-sm-0 ml-2" type="submit">   Logout </button></a>
+  
+  {% endif %}
+  
+    </div>
+
+
+</nav>
+<hr class=" mt-0 opacity-100">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
+    .navbar-custom {
+        background-color: transparent;
+    }
+    .navbar-nav {
+        margin-left: auto;
+        margin-right: auto;
+        color:white;
+
+    }
+    .nav-link {
+        font-size: 2rem; /* Yazı boyutunu büyüttük */
+        color:#494848;
+        transition: 0.1s;
+
+    }
+    .nav-link:hover{
+        transition: 0.1s;
+        color:#000000;
+        transform: scale(105%);
+        
+    }
+    .navbar-brand {
+        font-size: 2rem; /* Logo yazısını büyüttük */
+        transition:0.3s;
+    }
+    .navbar-brand:hover {
+        transition: 0.3s;
+        transform: scale(115%);
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Events {% endblock title %}
+{% block body %}
+<h1 class="display-5 text-center"> Events</h1>
+<hr class="opacity-75">
+<div class="row">
+    {% for travel in events %}
+    <div class="col-sm-4 mt-3 ">
+        <div class="card">
+            <div class="card-header bg-dark text-white text-center lead ">{{travel.title}} </div>
+            <div class="card-body ">
+                <img src="{{travel.thumbnail_image.url}}" alt="" class="img-fluid" style="height:16rem">
+                <p class="card-text mt-2 "> {{travel.content|safe|truncatechars:100}} 
+                <span class="font-italic opacity-75"> {{travel.c_date}} | {{travel.author}} </span>
+                </p>
+                
+                <a href="{% url 'travel:detail' travel.id %} " class="btn btn-dark float-left" style="margin-top:-3%">Continue to read</a>
+                <div class="float-right" style="margin-top:-3%">
+
+                    {% if request.user == travel.author %}
+                    <a href="{% url 'travel:update' travel.id %}" class="btn btn-dark">Edit</a>
+                    <a href="{% url 'travel:delete' travel.id %}" class="btn btn-dark">Delete</a>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+    <br>
+
+{% endblock body %}

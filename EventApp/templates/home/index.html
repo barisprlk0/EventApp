@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block body %}
+<br>
+<h1 class="display-5 text-center "> Recently Added Events</h1>
+<hr class="opacity-75">
+<div class="row">
+    {% for travel in travels %}
+    <div class="col-sm-4 mt-3 ">
+        <div class="card">
+            <div class="card-header bg-dark text-white text-center lead ">{{travel.title}} </div>
+            <div class="card-body ">
+                <img src="{{travel.thumbnail_image.url}}" alt="" class="img-fluid" style="height:16rem">
+                <p class="card-text mt-2 "> {{travel.content|safe|truncatewords:30}} <br>                
+                    <small class="font-italic opacity-751"    > {{travel.c_date}} | {{travel.author}} </small>
+                </p>                
+                <a href="{% url 'travel:detail' travel.id %} " class="btn btn-dark float-left" style="margin-top:-3%">Continue to read</a>
+                <div class="float-right" style="margin-top:-3%">
+                    {% if request.user == travel.author %}
+                    <a href="{% url 'travel:update' travel.id %}" class="btn btn-dark">Edit</a>
+                    <a href="{% url 'travel:delete' travel.id %}" class="btn btn-dark">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <br>
+</div>
+{% endblock body %}

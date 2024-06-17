@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Contact {% endblock title %}
+{% block body %}
+
+<div class="row">
+    <h3 class="text-center display-3 mt-3">İletişim</h3>
+    <hr class="opacity-100">
+    <div class="col-sm-6">
+        <img src="{% static 'img/contactmain.png' %}" style="height:100%;" alt="" class="img-fluid sas">
+    </div>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-7">
+                 <strong class="display-5">Adres </strong> 
+                 <hr class="mb-0 mt-0 opacity-100 w-50">
+                 <br> 
+                 <p class="lead"> 
+                    <i class="bi bi-house-door"></i>
+                    Yenidoğan Mahallesi İlören Sokak No:14 <br> Gürsu/Bursa </p> 
+            </div>  
+            <div class="col-sm-5">
+                <strong class="display-5">Telefon </strong> 
+                <hr class="mb-0 mt-0 opacity-100 w-75">
+                <br> 
+                <p class="mt-0 lead"> &nbsp; <i class="bi bi-telephone"></i>
+
+                    <a href="tel:+905443574530">0544 357 45 30</a> </p>
+           </div>    
+           <div class="col-sm-12">
+
+           <h3 class="display-5">Mail Gönder!</h3>
+           <hr class="opacity-100">
+           
+        </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .sas{
+        transition: 0.3s;
+        opacity: 85%;
+    }
+    .sas:hover{
+        transition: 0.3s;
+        opacity: 100%;
+    }
+</style>
+
+{% endblock body %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %} Profile {% endblock title %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-5">
+        <h3 class="display-5 text-center">Your Events</h3>
+        <hr class="w-100 mt-0  opacity-100">
+        <a href="{% url 'travel:create' %}"> <button class="btn btn-outline-warning w-100"> Share an Event </button>
+        </a>
+
+        <hr class="w-100 opacity-100">
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th class="col">Title</th>
+                    <th class="col">Update</th>
+                    <th class="col"> Delete </th>
+                    <th class="col"> ID </th>
+                </tr>
+            </thead>
+            {% for travel in travels %}
+            <tbody>
+                <tr>
+                    <th class="row"> <a href="{% url 'travel:detail' travel.id %}"
+                            class="text-dark font-italic text-decoration-underline"> {{travel.title}} </a> </th>
+                    <td> <a href="{% url 'travel:update' travel.id %}"> <button class="btn btn-outline-danger">
+                                Update</button> </a> </td>
+                    <td> <a href="{% url 'travel:delete' travel.id %}"> <button class="btn btn-outline-danger">
+                                Delete</button> </a> </td>
+                    <td> {{travel.id}} </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-5">
+        <h3 class="display-5 text-center">Your Announcements</h3>
+        <hr class="w-100 mt-0  opacity-100">
+        <a href="{% url 'announcement:create' %}"> <button class="btn btn-outline-warning w-100"> Post an Announcement
+            </button> </a>
+        <hr class="w-100 opacity-100">
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th class="col">Title</th>
+                    <th class="col">Update</th>
+                    <th class="col"> Delete </th>
+                    <th class="col"> ID </th>
+                </tr>
+            </thead>
+            {% for post in posts %}
+            <tbody>
+                <tr>
+                    <th class="row"> <a href="#" class="text-dark font-italic text-decoration-underline"> {{post.title}}
+                        </a> </th>
+                    <td> <a href="{% url 'announcement:update' post.id %}"> <button class="btn btn-outline-danger">
+                                Update</button> </a> </td>
+                    <td> <a href="{% url 'announcement:delete' post.id %}"> <button class="btn btn-outline-danger">
+                                Delete</button> </a> </td>
+                    <td> {{post.id}} </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock body %}
