@@ -6,7 +6,7 @@ from django.db import models
 
 class TravelModelAdmin(admin.ModelAdmin):
     fields = (
-            'title','thumbnail_image','content'
+            'title','thumbnail_image','content',
         )
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 30})},

@@ -14,15 +14,3 @@ class TravelModel(models.Model):
         return self.title
 
 
-    def avarage_rating(self):
-        ratings=self.ratings.all()
-        if ratings.exists():
-            return sum(rating.value for rating in ratings) / ratings.count()
-        return 0
-    
-class Rating(models.Model):
-    travel_post= models.ForeignKey(TravelModel,related_name='ratings',on_delete=models.CASCADE)
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    value=models.PositiveSmallIntegerField(default=1, choices=[(i,i) for i in range(1,6)])
-    class Meta: 
-        unique_together=('travel_post','user')

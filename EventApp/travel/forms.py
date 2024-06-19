@@ -1,5 +1,5 @@
 from django import forms
-from .models import TravelModel, Rating
+from .models import TravelModel
 from tinymce.widgets import TinyMCE
 
 class TravelForm(forms.ModelForm):
@@ -15,11 +15,3 @@ class TravelForm(forms.ModelForm):
             'thumbnail_image': forms.FileInput(attrs={'class': 'form-control form-large  '}),
         } 
 
-
-class RatingForm(forms.ModelForm):
-    class Meta:
-        model=Rating
-        fields=['value']
-        widgets = {
-            'value': forms.RadioSelect(choices=[(i, i) for i in range(1, 6)] )
-        }

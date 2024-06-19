@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import TravelModel,Rating
-from .forms import TravelForm,RatingForm
+from .models import TravelModel
+from .forms import TravelForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -23,9 +23,8 @@ def index_view(request):
 
 
 def detail(request,id):
-     post = get_object_or_404(Rating, id=id)
      travel=get_object_or_404(TravelModel,id=id)
-     return render(request, 'travel/detail.html',{'travel':travel,'post':post})
+     return render(request, 'travel/detail.html',{'travel':travel,})
 
 def update_view(request, id):
     travel = get_object_or_404(TravelModel, id=id)
@@ -52,20 +51,3 @@ def delete_view(request,id):
         return redirect('home:index')
     return render(request, 'travel/delete_confirm.html', {'travel': travel})
 
-
-@login_required
-def rate_post(request,id):
-    post= get_object_or_404(TravelModel,id=id)
-    if request.method=="POST":
-        form=RatingForm(request.POST)
-        if form.is_valid():
-            rating, created= Rating.objects.update_or_create(
-                user=request.user,
-                travel_post=post,
-                defaults={'value':form.cleaned_data['value']}
-            )
-            return redirect('home:index') ##değişecek
-        
-    else:
-        form=RatingForm()
-    return render(request, 'travel/rate_post.htsml',{'form':form,'post':post})
