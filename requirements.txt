@@ -1,0 +1,5 @@
+requirements:
+python
+django
+django-tinymce
+pillow
